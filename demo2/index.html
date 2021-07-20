@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<video src="" id="preview" controls="controls">
+</body>
+<script>
+    const video = document.querySelector("#preview");
+
+
+    function ajax(url, cb) {
+        const xhr = new XMLHttpRequest();
+        xhr.open("get", url);
+        xhr.responseType = "blob"; // "text"-字符串 "blob"-Blob对象 "arraybuffer"-ArrayBuffer对象
+        xhr.onload = function() {
+            cb(xhr.response);
+        };
+        xhr.send();
+    }
+    ajax('https://upos-sz-staticks3.bilivideo.com/ssaxcode/84/cx/m210511a249fvd380gg1i2ml1yjfcx84-1-SiteTool_1080.mp4', function(res){
+        const src = URL.createObjectURL(res);
+        video.src = src;
+        alert(src)
+    })
+</script>
+</html>
